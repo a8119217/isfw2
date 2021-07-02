@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="lib/jquery.min.js"></script>
+    <script type="text/javascript" src="lib/osql.js"></script>
+
+    <script>
+        osql.requireLogin(); 
+
+    async function buttonPressed(){
+        var username = document.getElementById('name').value;
+        sessionStorage.setItem('username', objects[0].name);
+
+    }
+    </script>
+
+</head>
+
+<body>
+    <h1>山の手線ゲーム</h1>
+    <div>
+        <h2>ログイン</h2>
+        名前:<input id="name" value="" type="textfield">
+        <br><hr>
+        <button onclick="buttonPressed()">ログイン</button>
+        <p id="result"></p>
+    </div>
+  
+    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
+</body>
+
+</html>
