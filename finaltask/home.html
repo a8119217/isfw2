@@ -5,17 +5,25 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-    <script type="text/javascript" src="lib/jquery.min.js"></script>
-    <script type="text/javascript" src="lib/osql.js"></script>
+    <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/osql.js"></script>
 
     <script>
         osql.requireLogin();
 
+<<<<<<< HEAD
         async function buttonPressed() {
             var username = document.getElementById('name').value;
             var usernumber = document.getElementById('number').value;
             sessionStorage.setItem('username', objects[0].name);
             sessionStorage.setItem('usernumber', objects[0].number);
+=======
+    async function buttonPressed(){
+        var username = document.getElementById('name').value;
+        var sql = `insert into Users(name) values("${username}");`;
+        var objects = await osql.connect(sql);
+       // sessionStorage.setItem('username', objects[0].name);
+>>>>>>> 9c0296b8a9cb463edf24268c52cee656bac76f8f
 
         }
     </script>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/osql.js"></script>
+
+    <script>
+        osql.requireLogin();
+
+        $(document).ready(function () {
+            execSelect();
+        });
+
+        async function execSelect() {
+            var html = '';
+            html = html + '<table border = 5>'
+            for (var i = 1; i < 11; i++) {
+                html = html + '<tr>';
+                html = html + '<td>' + 'room' + i + '</td>';
+                html = html + '</tr>';
+            }
+            html = html + '</table>';
+            document.getElementById('result').innerHTML = html;
+        }
+    </script>
+
+</head>
+
+<body>
+    <h1>Room</h1>
+    <p id="result">xxxx</p>
+</body>
+
+</html>
