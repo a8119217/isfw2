@@ -9,13 +9,15 @@
     <script type="text/javascript" src="lib/osql.js"></script>
 
     <script>
-        osql.requireLogin(); 
+        osql.requireLogin();
 
-    async function buttonPressed(){
-        var username = document.getElementById('name').value;
-        sessionStorage.setItem('username', objects[0].name);
+        async function buttonPressed() {
+            var username = document.getElementById('name').value;
+            var usernumber = document.getElementById('number').value;
+            sessionStorage.setItem('username', objects[0].name);
+            sessionStorage.setItem('usernumber', objects[0].number);
 
-    }
+        }
     </script>
 
 </head>
@@ -24,12 +26,15 @@
     <h1>山の手線ゲーム</h1>
     <div>
         <h2>ログイン</h2>
+        学籍番号:<input id="number" value="" type="textfield">
+        <br>
         名前:<input id="name" value="" type="textfield">
-        <br><hr>
+        <br>
+        <hr>
         <button onclick="buttonPressed()">ログイン</button>
         <p id="result"></p>
     </div>
-  
+
     <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
 </body>
 
