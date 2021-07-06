@@ -14,6 +14,17 @@
         async function buttonPressed() {
             var userid = document.getElementById('id').value;
             var username = document.getElementById('name').value;
+<<<<<<< HEAD
+=======
+            var usernumber = document.getElementById('number').value;
+            sessionStorage.setItem('username', objects[0].name);
+            sessionStorage.setItem('usernumber', objects[0].number);
+    async function buttonPressed(){
+        var username = document.getElementById('name').value;
+        var sql = `insert into Users(name) values("${username}");`;
+        var objects = await osql.connect(sql);
+       // sessionStorage.setItem('username', objects[0].name);
+>>>>>>> fe696081575e94c4be82381a1afa6c975b3af203
 
             var sql = `insert into Users(studentid,name) values("${userid}","${username}");`;
             var objects = await osql.connect(sql);
