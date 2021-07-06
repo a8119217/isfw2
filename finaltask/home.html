@@ -12,11 +12,12 @@
         osql.requireLogin();
 
         async function buttonPressed() {
+            var userid = document.getElementById('id').value;
+            var username = document.getElementById('name').value;
+
             var sql = `insert into Users(studentid,name) values("${userid}","${username}");`;
             var objects = await osql.connect(sql);
 
-            var userid = document.getElementById('id').value;
-            var username = document.getElementById('name').value;
 
             for (var i = 0; i < objects.length; i++) {
                 sessionStorage.setItem('userid', objects[0].studentid);
