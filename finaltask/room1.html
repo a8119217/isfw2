@@ -34,10 +34,11 @@
                 console.log("あるよ")
                 var sql = `DELETE FROM YokohamaLine WHERE station="${answer}";`
                 await osql.connect(sql);
-                var x = yokohamaline.indexOf(answer);
-                yokohamaline.splice(x,1);
+                /*var x = yokohamaline.indexOf(answer);
+                yokohamaline.splice(x,1);*/
                 //console.log(x);
                 length = length - 1;
+                execSelect();
                 console.log(yokohamaline)
             }
             else{
