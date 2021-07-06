@@ -7,10 +7,21 @@
     <script type="text/javascript" src="../lib/osql.js"></script>
 
     <script>
+         $(document).ready(function () {
+            execSelect();
+        });
         osql.requireLogin(); 
+        async function execSelect(){
+            var sql = 'select*from yokohamaLine';
+        }
         async function startbutton(){
+            
+        }
+        async function decisionbutton(){
+            
 
         }
+
     </script>
 
 </head>
@@ -18,10 +29,12 @@
 <body>
     <h1>room1</h1>
     <div>
-        <button onclick = "startbutton()"></button>
+        <button onclick = "startbutton()">スタート</button><br>
+        解答:<input id="name" value="" type="textfield">
+        <button onclick = "decisionbutton()">決定</button>
     </div>
   
-    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
+    
 </body>
 
 </html>
