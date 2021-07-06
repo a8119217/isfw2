@@ -12,12 +12,25 @@
         });
         osql.requireLogin(); 
         async function execSelect(){
-            var sql = 'select*from yokohamaLine';
+            var objects = await osql.connect('select*from yokohamaLine');
+            var yokohamaline = [];
+
+            for(var i = 0;i<6;i++){
+                var station = objects[i].station;
+                yokohamaline
+
+            }
+
         }
         async function startbutton(){
             
         }
         async function decisionbutton(){
+            var answer = document.getElementById('answer').value;
+            //answer = 
+            //if(){
+                
+            //}
             
 
         }
@@ -30,7 +43,7 @@
     <h1>room1</h1>
     <div>
         <button onclick = "startbutton()">スタート</button><br>
-        解答:<input id="name" value="" type="textfield">
+        解答:<input id="answer" value="" type="textfield">
         <button onclick = "decisionbutton()">決定</button>
     </div>
   
