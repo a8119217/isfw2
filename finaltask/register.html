@@ -15,28 +15,31 @@
             var userid = document.getElementById('id').value;
             var username = document.getElementById('name').value;
 
-            var sql = `insert into Users(studentid,name) values("${userid}","${username}");`;
-            var objects = await osql.connect(sql);
             var sql2 = `select * from Users where studentid = "${userid}";`;
             var objects2 = await osql.connect(sql2);
-            //console.log(objects2);
+            console.log(objects2);
 
-            // if (objects2[0].studentid != userid) {
-            //     document.getElementById('result').innerHTML = 'その番号はすでに使用されています';
-            //     return;
-            // }
-
-            // if (objects2[0].name != username) {
-            //     document.getElementById('result').innerHTML = '他の名前を入力してください';
-            //     return;
-            // }
-
-
-            for (var i = 0; i < objects2.length; i++) {
-                sessionStorage.setItem('userid', objects2[0].studentid);
-                sessionStorage.setItem('username', objects2[0].name);
-
+            for (var i = 1; i < objects2.length; i++) {
+                // if (objects2[i].studentid == userid) {
+                //     document.getElementById('result').innerHTML = 'その番号はすでに使用されています';
+                //     // return;
+                // }
+                if (objects2[i].name == username) {
+                    document.getElementById('result').innerHTML = '他の名前を入力してください';
+                    //return;
+                }
             }
+
+            var sql = `insert into Users(studentid,name) values("${userid}","${username}");`;
+            var objects = await osql.connect(sql);
+
+
+            console.log(objects2[0]);
+
+            sessionStorage.setItem('userid', userid);
+            sessionStorage.setItem('username', username);
+
+
             location.href = 'roomselect.html';
         }
 
@@ -57,7 +60,6 @@
         <p id="result"></p>
     </div>
 
-    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
 </body>
 
 </html>
