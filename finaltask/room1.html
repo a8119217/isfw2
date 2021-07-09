@@ -11,13 +11,17 @@
             execSelect();
         });
         var yokohamaline = [];
-        var length = 5;
+        //var count = `select count(station) from YokohamaLine;`
+          //  await osql.connect(count);
+        
         osql.requireLogin(); 
         async function execSelect(){
             var objects = await osql.connect('select*from YokohamaLine');
             yokohamaline = [];
             
-            for(var i = 0;i<length;i++){              
+            
+            
+            for(var i = 0;i<5;i++){              
                 yokohamaline[i] = objects[i].station;
                 console.log(yokohamaline)
             }
@@ -34,12 +38,14 @@
                 console.log("あるよ")
                 var sql = `DELETE FROM YokohamaLine WHERE station="${answer}";`
                 await osql.connect(sql);
-                /*var x = yokohamaline.indexOf(answer);
-                yokohamaline.splice(x,1);*/
+                //var x = yokohamaline.indexOf(answer);
+                //yokohamaline.splice(x,1);*/
                 //console.log(x);
-                length = length - 1;
+                //length = length - 1;
+                
                 execSelect();
                 console.log(yokohamaline)
+                
             }
             else{
                 console.log("ないよ")
