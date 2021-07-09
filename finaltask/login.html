@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/osql.js"></script>
+
+    <script>
+        osql.requireLogin();
+
+        async function buttonPressed() {
+            var userid = document.getElementById('id').value;
+            var username = document.getElementById('name').value;
+
+            var sql = `select * from Users where studentid="${userid}";`;
+            var objects = await osql.connect(sql);
+            if (objects.length <= 0) {
+                document.getElementById('result').innerHTML = 'ログイン失敗：学籍番号が違います';
+                return;
+            }
+            if (objects[0].name != username) {
+                document.getElementById('result').innerHTML = 'ログイン失敗：名前が違います';
+                return;
+            }
+
+            sessionStorage.setItem('userid', objects[0].id);
+            sessionStorage.setItem('username', objects[0].name);
+
+            location.href = 'roomselect.html';
+
+        }
+
+    </script>
+
+</head>
+
+<body>
+    <h1>山の手線ゲーム</h1>
+    <div>
+        <h2>ログイン</h2>
+        学籍番号:<input id="id" value="" type="textfield">
+        <br>
+        名前:<input id="name" value="" type="textfield">
+        <br>
+        <hr>
+        <button onclick="buttonPressed()">ログイン</button>
+        <p id="result"></p>
+    </div>
+
+    <p style="text-align: right"><a href="admintop.html">管理者ページ</a></p>
+</body>
+
+</html>

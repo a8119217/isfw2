@@ -11,23 +11,23 @@
     <script>
         osql.requireLogin();
 
-        async function buttonPressed() {
-            var userid = document.getElementById('id').value;
-            var username = document.getElementById('name').value;
+        // async function buttonPressed() {
+        //     var userid = document.getElementById('id').value;
+        //     var username = document.getElementById('name').value;
 
-            var sql = `insert into Users(studentid,name) values("${userid}","${username}");`;
-            var objects = await osql.connect(sql);
-            var sql2 = `select * from Users where name = "${username}";`;
-            var objects2 = await osql.connect(sql2);
-            console.log(objects2);
+        //     var sql = `insert into Users(studentid,name) values("${userid}","${username}");`;
+        //     var objects = await osql.connect(sql);
+        //     var sql2 = `select * from Users where name = "${username}";`;
+        //     var objects2 = await osql.connect(sql2);
+        //     console.log(objects2);
 
-            for (var i = 0; i < objects2.length; i++) {
-                sessionStorage.setItem('userid', objects2[0].studentid);
-                sessionStorage.setItem('username', objects2[0].name);
+        //     for (var i = 0; i < objects2.length; i++) {
+        //         sessionStorage.setItem('userid', objects2[0].studentid);
+        //         sessionStorage.setItem('username', objects2[0].name);
 
-            }
-            location.href = 'roomselect.html';
-        }
+        //     }
+        //     location.href = 'roomselect.html';
+       // }
 
     </script>
 
@@ -38,7 +38,7 @@
     <div>
         <ul>
             <li><a href="login.html">ログイン</a></li>
-            <li><a href="home.html">会員登録</a></li>
+            <li><a href="register.html">会員登録</a></li>
         </ul>
     </div>
 
