@@ -17,13 +17,15 @@
 
             var sql = `insert into Users(studentid,name) values("${userid}","${username}");`;
             var objects = await osql.connect(sql);
+            var sql2 = `select * from Users where name = "${username}";`;
+            var objects2 = await osql.connect(sql2);
+            console.log(objects2);
 
+            for (var i = 0; i < objects2.length; i++) {
+                sessionStorage.setItem('userid', objects2[0].studentid);
+                sessionStorage.setItem('username', objects2[0].name);
 
-            for (var i = 0; i < objects.length; i++) {
-                sessionStorage.setItem('userid', objects[0].studentid);
-                sessionStorage.setItem('username', objects[0].name);
             }
-
             location.href = 'roomselect.html';
         }
 
