@@ -20,7 +20,7 @@
             var object = await osql.connect(sql);
             var name = sessionStorage.getItem('username');
             console.log(name);
-            document.getElementById('result').innerHTML = name;
+            document.getElementById('result').innerHTML = name + 'さん こんにちは！';
 
             var room1 = [];
             var room2 = [];
