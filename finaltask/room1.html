@@ -11,25 +11,26 @@
             execSelect();
         });
         var yokohamaline = [];
-        //var count = `select count(station) from YokohamaLine;`
-          //  await osql.connect(count);
+        
         
         osql.requireLogin(); 
         async function execSelect(){
             var objects = await osql.connect('select*from YokohamaLine');
             yokohamaline = [];
-            
-            
-            
-            for(var i = 0;i<5;i++){              
+            var objects2 = await osql.connect(`select count(station) as x from YokohamaLine;`);
+            console.log(objects2);
+            var count = Number(objects2[0].x)
+            console.log(count);
+   
+            for(var i = 0;i<count;i++){              
                 yokohamaline[i] = objects[i].station;
                 console.log(yokohamaline)
             }
-         
-            
+                
         }
         async function startbutton(){
-            
+            var sql = `create table Game(username text,answer text)`;
+            await osql.connect(sql);
         }
         async function decisionbutton(){
             
@@ -44,6 +45,7 @@
                 //length = length - 1;
                 
                 execSelect();
+
                 console.log(yokohamaline)
                 
             }
