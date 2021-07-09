@@ -24,7 +24,7 @@
 
             for (var i = 0; i < count; i++) {
                 yokohamaline[i] = objects[i].station;
-                console.log(yokohamaline)
+                //console.log(yokohamaline)
             }
 
         }
@@ -39,10 +39,11 @@
                 console.log("あるよ")
                 var sql = `DELETE FROM YokohamaLine WHERE station="${answer}";`
                 await osql.connect(sql);
-                //var x = yokohamaline.indexOf(answer);
-                //yokohamaline.splice(x,1);*/
-                //console.log(x);
-                //length = length - 1;
+                var name = sessionStorage.getItem('username');
+                console.log(name);
+                var sql2 = `insert into Game(username,answer)value("${name}","${answer}")`
+                await osql.connect(sql2);
+                
 
                 execSelect();
 
