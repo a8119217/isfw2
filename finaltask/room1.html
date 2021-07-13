@@ -7,7 +7,6 @@
     <script type="text/javascript" src="../lib/osql.js"></script>
 
     <script>
-        $(document).ready(function () {
             execSelect();
         });
         var yokohamaline = [];
@@ -59,8 +58,19 @@
                 await osql.connect(sql2);
                 execSelect();
                 console.log(yokohamaline)
+<<<<<<< HEAD
+
+                //var sql = 'select * from Game order by time desc limit 20';
+                //var objects = await osql.connect(sql);
+                //console.log(objects);
+                //var html = '';
+
+
+=======
+>>>>>>> baab74e3f3eb21674e18229a64977d0f2e6dc2b6
             }
             else {
+
                 console.log("ないよ")
             }
             
@@ -84,7 +94,11 @@
         解答:<input id="answer" value="" type="textfield">
         <button onclick="decisionbutton()">決定</button>
         <button onclick="resetbutton()">リセット</button>
+<<<<<<< HEAD
+        <p id="result"></p>
+=======
         <p id = 'result'></p>
+>>>>>>> baab74e3f3eb21674e18229a64977d0f2e6dc2b6
     </div>
 
 
