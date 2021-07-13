@@ -73,10 +73,9 @@
             else {
                 console.log("ないよ")
                 execSelect();
-                var gameover = "Game Over(;_;)"
-                document.getElementById('gameover').innerHTML = gameover;
+
                 var name = sessionStorage.getItem('username');
-                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver")`
+                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver(;▽;)")`
                 await osql.connect(sql2);
 
             }
@@ -126,7 +125,7 @@
         <button onclick="decisionbutton()">決定</button>
         
         <p id = 'result'></p>
-        <p id = 'gameover'></p>
+
     </div>
 
 
