@@ -24,11 +24,11 @@
 
             for (var i = 0; i < count; i++) {
                 yokohamaline[i] = objects[i].station;
-                //console.log(yokohamaline)
+                console.log(yokohamaline)
             }
 
         }
-        async function startbutton() {
+        async function startbutton(){
             //var sql = 'create table Game(username text not null,answer text not null)'
             //await osql.connect(sql);
             var game = await osql.connect('select*from Game');
