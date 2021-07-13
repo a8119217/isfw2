@@ -20,7 +20,7 @@
             var object = await osql.connect(sql);
             var name = sessionStorage.getItem('username');
             console.log(name);
-            
+
             document.getElementById('result').innerHTML = name + 'さん こんにちは！';
 
             /*var room1 = [];
@@ -56,9 +56,8 @@
 
 <body>
     <h1>Room</h1>
-    <p id="result">xxxx</p>
-    <p id="result2">xxxx</p>
-    <button onclick = " buttonPressed()">入る</button>
+    <p id="result"></p>
+    <button onclick=" buttonPressed()">入る</button>
 </body>
 
 </html>
