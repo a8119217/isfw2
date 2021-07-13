@@ -26,11 +26,19 @@
                 yokohamaline[i] = objects[i].station;
                 //console.log(yokohamaline)
             }
+        
+        
+        
 
         }
         async function startbutton() {
-            //var sql = 'create table Game(username text not null,answer text not null)'
-            //await osql.connect(sql);
+            var sql = 'create table Game(username text not null,answer text not null)'
+            await osql.connect(sql);
+            var timer ;
+            timer = setInterval(renewtable, 2000)  
+        }
+        
+        async function renewtable(){
             var game = await osql.connect('select*from Game');
             var html = "";
             html = html + '<table border="1">';
@@ -45,7 +53,6 @@
             document.getElementById('result').innerHTML = html;
         }
 
-
         async function decisionbutton() {
 
             var answer = document.getElementById('answer').value;
@@ -59,6 +66,7 @@
                 await osql.connect(sql2);
                 execSelect();
                 console.log(yokohamaline)
+                
             }
             else {
                 console.log("ないよ")
