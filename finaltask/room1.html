@@ -35,13 +35,13 @@
         
 
         }
-        async function startbutton() {
-            
+        async function startbutton() {   
             var timer ;
             timer = setInterval(renewtable, 2000)  
         }
 
         async function renewtable(){
+            execSelect();
             var game = await osql.connect('select*from Game');
             var html = "";
             html = html + '<table border="1">';
@@ -57,7 +57,6 @@
         }
 
         async function decisionbutton() {
-
             var answer = document.getElementById('answer').value;
             if (yokohamaline.indexOf(answer) >= 0) {
                 console.log("あるよ")
