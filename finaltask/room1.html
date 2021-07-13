@@ -75,8 +75,10 @@
                 execSelect();
                 var gameover = "Game Over(;_;)"
                 document.getElementById('gameover').innerHTML = gameover;
+                var name = sessionStorage.getItem('username');
                 var sql2 = `insert into Game(username,answer)value("${name}","GameOver")`
-                
+                await osql.connect(sql2);
+
             }
             
         }
