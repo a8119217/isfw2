@@ -54,6 +54,11 @@
             }
             html = html + '</table>';
             document.getElementById('result').innerHTML = html;
+            if(game.length==20){
+                var sql2 = `insert into Game(username,answer)value("全員","clear")`;
+                await osql.connect(sql2);
+
+            }
         }
 
         async function decisionbutton() {
