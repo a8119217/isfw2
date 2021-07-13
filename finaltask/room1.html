@@ -23,14 +23,28 @@
 
             for (var i = 0; i < count; i++) {
                 yokohamaline[i] = objects[i].station;
-                console.log(yokohamaline)
+                //console.log(yokohamaline)
             }
 
         }
         async function startbutton() {
-            var sql = `create table Game(username text,answer text)`;
-            await osql.connect(sql);
+            //var sql = 'create table Game(username text not null,answer text not null)'
+            //await osql.connect(sql);
+            var game = await osql.connect('select*from Game');
+            var html = "";
+            html = html + '<table border="1">';
+            for(var i = 0;i<game.length;i++){
+                var gameobject = game[i];
+                html = html + '<tr>';
+                html = html + '<td>' + gameobject.username + '</td>';
+                html = html + '<td>' + gameobject.answer + '</td>';
+                html = html + '</tr>';
+            }
+            html = html + '</table>';
+            document.getElementById('result').innerHTML = html;
         }
+
+
         async function decisionbutton() {
 
             var answer = document.getElementById('answer').value;
@@ -38,14 +52,13 @@
                 console.log("あるよ")
                 var sql = `DELETE FROM YokohamaLine WHERE station="${answer}";`
                 await osql.connect(sql);
-                //var x = yokohamaline.indexOf(answer);
-                //yokohamaline.splice(x,1);*/
-                //console.log(x);
-                //length = length - 1;
-
+                var name = sessionStorage.getItem('username');
+                console.log(name);
+                var sql2 = `insert into Game(username,answer)value("${name}","${answer}")`
+                await osql.connect(sql2);
                 execSelect();
-
                 console.log(yokohamaline)
+<<<<<<< HEAD
 
                 //var sql = 'select * from Game order by time desc limit 20';
                 //var objects = await osql.connect(sql);
@@ -53,13 +66,17 @@
                 //var html = '';
 
 
+=======
+>>>>>>> baab74e3f3eb21674e18229a64977d0f2e6dc2b6
             }
             else {
 
                 console.log("ないよ")
             }
-
+            
         }
+
+
 
         async function resetbutton() {
             var deletion = `drop table Game;`
@@ -77,8 +94,13 @@
         解答:<input id="answer" value="" type="textfield">
         <button onclick="decisionbutton()">決定</button>
         <button onclick="resetbutton()">リセット</button>
+<<<<<<< HEAD
         <p id="result"></p>
+=======
+        <p id = 'result'></p>
+>>>>>>> baab74e3f3eb21674e18229a64977d0f2e6dc2b6
     </div>
+
 
 
 </body>
