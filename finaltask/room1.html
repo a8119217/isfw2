@@ -75,6 +75,8 @@
                 execSelect();
                 var gameover = "Game Over(;_;)"
                 document.getElementById('gameover').innerHTML = gameover;
+                var sql2 = `insert into Game(username,answer)value("${name}","GameOver")`
+                
             }
             
         }
