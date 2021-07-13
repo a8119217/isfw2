@@ -14,7 +14,6 @@
         async function buttonPressed() {
             var userid = document.getElementById('id').value;
             var username = document.getElementById('name').value;
-<<<<<<< HEAD
 
             var sql2 = `select * from Users where studentid = "${userid}";`;
             var objects2 = await osql.connect(sql2);
@@ -42,46 +41,9 @@
 
 
             location.href = 'roomselect.html';
-=======
-            //  var sql2 = `select * from Users where studentid = "${userid}";`; //a8119217のテーブルでstudentidがuseridのものを見つける
-            var sql2 = `select * from Users;`; //a8119217のテーブル全て取得している
-            var objects2 = await osql.connect(sql2);
-            console.log(objects2);
 
-            // if (objects2[0].studentid != userid) { //praimary key の仕様上データベース側でエラーが検出される
-            //     document.getElementById('result').innerHTML = 'その番号はすでに使用されています';
-            //     return;
-            // }
-
-            var flag = "true"; //重複しているかフラグを立てる（強引だけど…）
-
-            for (var i = 0; i < objects2.length; i++) { //objects2の中の要素と取得した値の重複を順に調べていく
-                if (userid == objects2[i].studentid) {　//学籍番号の重複を調べる
-                    document.getElementById('result').innerHTML = '他の学籍番号を入力してください';
-                    flag = "fales";　//重複の場合はフラグを変える
-
-                } else if (username == objects2[i].name) {　//名前の重複を調べる
-                    document.getElementById('result').innerHTML = '他の名前を入力してください';
-                    flag = "false";　//重複の場合はフラグを変える
-                }
-
-            } if (flag == "true") { //フラグがtrue（重複が見られない）ならば実行される
-                var sql = `insert into Users(studentid,name) values("${userid}","${username}");`;
-                var objects = await osql.connect(sql);
-                //console.log(sql);
-
-                sessionStorage.setItem('userid', userid);
-                sessionStorage.setItem('username', username);
-
-                location.href = 'roomselect.html';
-                //console.log("move");
-            }
-<<<<<<< HEAD
->>>>>>> 53af9367274730012ab7b0faf7d9db20920b6db3
-=======
             location.href = 'roomselect.html';
-            
->>>>>>> 6e3086bc8a1bea22b9a6bf5a247ba89838c72da3
+
         }
 
     </script>
