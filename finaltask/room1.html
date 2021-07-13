@@ -12,6 +12,10 @@
         });
         var yokohamaline = [];
 
+        async function　createtable(){
+            var sql = 'create table Game(username text not null,answer text not null)'
+            await osql.connect(sql);
+        }
 
         osql.requireLogin();
         async function execSelect() {
@@ -32,12 +36,11 @@
 
         }
         async function startbutton() {
-            var sql = 'create table Game(username text not null,answer text not null)'
-            await osql.connect(sql);
+            
             var timer ;
             timer = setInterval(renewtable, 2000)  
         }
-        
+
         async function renewtable(){
             var game = await osql.connect('select*from Game');
             var html = "";
@@ -91,6 +94,7 @@
 <body>
     <h1>room1</h1>
     <div>
+        <button onclick="createtable()">テーブルを作る</button>
         <button onclick="startbutton()">スタート</button><br>
         解答:<input id="answer" value="" type="textfield">
         <button onclick="decisionbutton()">決定</button>
