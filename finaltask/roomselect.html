@@ -20,9 +20,10 @@
             var object = await osql.connect(sql);
             var name = sessionStorage.getItem('username');
             console.log(name);
+            
             document.getElementById('result').innerHTML = name + 'さん こんにちは！';
 
-            var room1 = [];
+            /*var room1 = [];
             var room2 = [];
 
             var html = '';
@@ -38,8 +39,17 @@
             }
 
             html = html + '</table>';
-            document.getElementById('result2').innerHTML = html;
+            document.getElementById('result2').innerHTML = html;*/
         }
+        async function buttonPressed() {
+            var name = sessionStorage.getItem('username');
+            sessionStorage.setItem('username', name);//足した
+            location.href = 'room1.html';//足した
+        }
+
+
+    // sessionStorage.setItem('username', name);//足した
+      //  location.href = 'room1.html';//足した
     </script>
 
 </head>
@@ -48,6 +58,7 @@
     <h1>Room</h1>
     <p id="result">xxxx</p>
     <p id="result2">xxxx</p>
+    <button onclick = " buttonPressed()">入る</button>
 </body>
 
 </html>
