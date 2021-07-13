@@ -84,6 +84,28 @@
         async function resetbutton() {
             var deletion = `drop table Game;`
             await osql.connect(deletion);
+            await osql.connect(`drop table YokohamaLine`);
+            await osql.connect(`create table YokohamaLine(stationid int not null primary key, station text)`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(1,'東神奈川')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(2,'大口')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(3,'菊名')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(4,'新横浜')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(5,'小机')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(6,'鴨居')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(7,'中山')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(8,'十日市場')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(9,'長津田')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(10,'成瀬')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(11,'町田')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(12,'長津田')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(13,'淵野辺')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(14,'矢部')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(15,'相模原')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(16,'橋本')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(17,'相原')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(18,'八王子みなみ野')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(19,'片倉')`);
+            await osql.connect(`insert into YokohamaLine(stationid,station)value(20,'八王子')`);
         }
 
     </script>
