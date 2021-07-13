@@ -76,7 +76,7 @@
                 var gameover = "Game Over(;_;)"
                 document.getElementById('gameover').innerHTML = gameover;
                 var name = sessionStorage.getItem('username');
-                var sql2 = `insert into Game(username,answer)value("${name}","GameOver")`
+                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver")`
                 await osql.connect(sql2);
 
             }
@@ -119,11 +119,12 @@
 <body>
     <h1>room1</h1>
     <div>
-        <button onclick="createtable()">テーブルを作る</button>
+        <button onclick="resetbutton()">リセット</button><br>
+        <button onclick="createtable()">テーブルを作る</button><br>
         <button onclick="startbutton()">スタート</button><br>
         解答:<input id="answer" value="" type="textfield">
         <button onclick="decisionbutton()">決定</button>
-        <button onclick="resetbutton()">リセット</button>
+        
         <p id = 'result'></p>
         <p id = 'gameover'></p>
     </div>
