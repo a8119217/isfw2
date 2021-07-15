@@ -11,6 +11,8 @@
             execSelect();
         });
         var yokohamaline = [];
+        var games = [];
+        
 
         async function　createtable(){
             var sql = 'create table Game(username text not null,answer text not null)'
@@ -63,6 +65,13 @@
 
         async function decisionbutton() {
             var answer = document.getElementById('answer').value;
+            var objects2 = await osql.connect(`select count(answer) as x from Game;`);
+            var count = Number(objects2[0].x)
+            var game = await osql.connect('select*from Game');
+            for (var i = 0; i < count; i++) {
+                games[i] = game[i].answer;
+                console.log(game)
+            }
             if (yokohamaline.indexOf(answer) >= 0) {
                 console.log("あるよ")
                 var sql = `DELETE FROM YokohamaLine WHERE station="${answer}";`
@@ -73,14 +82,23 @@
                 await osql.connect(sql2);
                 execSelect();
                 console.log(yokohamaline)
+                for (var i = 0; i < count; i++) {
+                games = game[i].answer;
+            }
                 
+            }
+            else if(games.indexOf(answer) >= 0){
+                console.log("ないよ")
+                execSelect();
+                var name = sessionStorage.getItem('username');
+                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver(;▽;)もう出てるよ")`
+                await osql.connect(sql2);
             }
             else {
                 console.log("ないよ")
                 execSelect();
-
                 var name = sessionStorage.getItem('username');
-                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver(;▽;)")`
+                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver(;▽;)横浜線にないよ")`
                 await osql.connect(sql2);
 
             }
