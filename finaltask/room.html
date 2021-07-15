@@ -9,10 +9,13 @@
     <script>
         $(document).ready(function () {
             execSelect();
+            var room = osql.getParam('room');
+            console.log(room)
+
         });
         var yokohamaline = [];
         var games = [];
-        
+
 
         async function createtable() {
             var sql = 'create table Game(username text not null,answer text not null)'
@@ -82,16 +85,8 @@
                 await osql.connect(sql2);
                 execSelect();
                 console.log(yokohamaline)
-<<<<<<< HEAD:finaltask/room1.html
-                for (var i = 0; i < count; i++) {
-                games = game[i].answer;
             }
-                
-=======
-
->>>>>>> 8e42c5ce1cc9401162dc34af1ef316bed4f4a6b2:finaltask/room.html
-            }
-            else if(games.indexOf(answer) >= 0){
+            else if (games.indexOf(answer) >= 0) {
                 console.log("ないよ")
                 execSelect();
                 var name = sessionStorage.getItem('username');
