@@ -1,0 +1,187 @@
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <script type="text/javascript" src="../lib/jquery.min.js"></script>
+    <script type="text/javascript" src="../lib/osql.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            execSelect();
+
+        });
+        var yokohamaline = [];
+        var games = [];
+
+
+
+        async function createtable() {
+            var sql = 'create table Game5(username text not null,answer text not null)'
+            await osql.connect(sql);
+            var sql2 = 'create table Name5(username text not null,turn bigint(8) primary key not null auto_increment)'
+            await osql.connect(sql2);
+        }
+
+        osql.requireLogin();
+        async function execSelect() {
+            var objects = await osql.connect('select*from YokohamaLine5');
+            yokohamaline = [];
+            var objects2 = await osql.connect(`select count(station) as x from YokohamaLine5;`);
+            console.log(objects2);
+            var count = Number(objects2[0].x)
+            console.log(count);
+
+            for (var i = 0; i < count; i++) {
+                yokohamaline[i] = objects[i].station;
+            }
+
+
+
+
+        }
+
+
+        async function startbutton() {
+            var timer;
+            timer = setInterval(renewtable, 2000)
+            timer2 = setInterval(nametable, 2000)
+            var name = sessionStorage.getItem('username');
+            var sql = `insert into Name5(username)value("${name}")`
+            await osql.connect(sql);
+        }
+
+        async function nametable() {
+            var member = await osql.connect('select*from Name5');
+            var html = "";
+            html = html + '<table border="1">';
+            for (var i = 0; i < member.length; i++) {
+                var memberobject = member[i];
+                html = html + '<tr>';
+                html = html + '<td>' + memberobject.username + '</td>';
+                html = html + '<td>' + memberobject.turn + '</td>';
+                html = html + '</tr>';
+            }
+            html = html + '</table>';
+            document.getElementById('name').innerHTML = html;
+        }
+
+
+
+
+        async function renewtable() {
+            execSelect();
+            var game = await osql.connect('select*from Game5');
+            var html = "";
+            html = html + '<table border="1">';
+            for (var i = 0; i < game.length; i++) {
+                var gameobject = game[i];
+                html = html + '<tr>';
+                html = html + '<td>' + gameobject.username + '</td>';
+                html = html + '<td>' + gameobject.answer + '</td>';
+                html = html + '</tr>';
+            }
+            html = html + '</table>';
+            document.getElementById('result').innerHTML = html;
+            if (game.length == 20) {
+                var sql2 = `insert into Game5(username,answer)value("全員","clear")`;
+                await osql.connect(sql2);
+
+            }
+        }
+
+        async function decisionbutton() {
+            var answer = document.getElementById('answer').value;
+            var objects2 = await osql.connect(`select count(answer) as x from Game5;`);
+            var count = Number(objects2[0].x)
+            var game = await osql.connect('select*from Game5');
+            for (var i = 0; i < count; i++) {
+                games[i] = game[i].answer;
+                console.log(game)
+            }
+            if (yokohamaline.indexOf(answer) >= 0) {
+                console.log("あるよ")
+                var sql = `DELETE FROM YokohamaLine5 WHERE station="${answer}";`
+                await osql.connect(sql);
+                var name = sessionStorage.getItem('username');
+                console.log(name);
+                var sql2 = `insert into Game5(username,answer)value("${name}","${answer}")`
+                await osql.connect(sql2);
+                execSelect();
+                console.log(yokohamaline)
+
+            }
+            else if (games.indexOf(answer) >= 0) {
+                console.log("ないよ")
+                execSelect();
+                var name = sessionStorage.getItem('username');
+                var sql2 = `insert into Game5(username,answer)value("${name}","${answer}GameOver(;▽;)もう出てるよ")`
+                await osql.connect(sql2);
+            }
+            else {
+                console.log("ないよ")
+                execSelect();
+                var name = sessionStorage.getItem('username');
+                var sql2 = `insert into Game5(username,answer)value("${name}","${answer}GameOver(;▽;)横浜線にないよ")`
+                await osql.connect(sql2);
+
+            }
+
+            document.getElementById('answer').value = "";
+
+        }
+
+
+
+        async function resetbutton() {
+            var deletion = `drop table Game5;`
+            await osql.connect(deletion);
+            await osql.connect('drop table Name5');
+            await osql.connect(`drop table YokohamaLine5`);
+            await osql.connect(`create table YokohamaLine5(stationid int not null primary key, station text)`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(1,'東神奈川')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(2,'大口')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(3,'菊名')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(4,'新横浜')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(5,'小机')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(6,'鴨居')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(7,'中山')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(8,'十日市場')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(9,'長津田')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(10,'成瀬')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(11,'町田')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(12,'古淵')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(13,'淵野辺')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(14,'矢部')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(15,'相模原')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(16,'橋本')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(17,'相原')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(18,'八王子みなみ野')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(19,'片倉')`);
+            await osql.connect(`insert into YokohamaLine5(stationid,station)value(20,'八王子')`);
+        }
+
+
+    </script>
+
+</head>
+
+<body>
+    <h1>room5</h1>
+    <div>
+        <p id='name'></p>
+        <button onclick="createtable()">テーブルを作る</button><br>
+        <button onclick="startbutton()">スタート</button><br>
+        解答:<input id="answer" value="" type="textfield">
+        <button onclick="decisionbutton()">決定</button><br><br>
+        <button onclick="resetbutton()">リセット(押さないでね）</button>
+
+        <p id='result'></p>
+
+    </div>
+
+
+
+</body>
+
+</html>
