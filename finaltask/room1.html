@@ -10,9 +10,6 @@
         $(document).ready(function () {
             execSelect();
 
-            //var room = osql.getParam('room');
-            //console.log(room)
-
         });
         var yokohamaline = [];
         var games = [];
@@ -37,7 +34,6 @@
 
             for (var i = 0; i < count; i++) {
                 yokohamaline[i] = objects[i].station;
-                //console.log(yokohamaline)
             }
 
 
@@ -45,12 +41,7 @@
 
         }
 
-        //async function registerbutton() {
-        //timer2 = setInterval(nametable, 2000)
-        //var name = sessionStorage.getItem('username');
-        //var sql = `insert into Name(username)value("${name}")`
-        //await osql.connect(sql);
-        //}
+
         async function startbutton() {
             var timer;
             timer = setInterval(renewtable, 2000)
@@ -61,12 +52,8 @@
         }
 
         async function nametable() {
-            //var name = sessionStorage.getItem('username');
-            //var turn = sessionStorage.getItem('turn');
             var member = await osql.connect('select*from Name1');
             var html = "";
-            //var sql = `insert into Name(username)value("${name}")`
-            //await osql.connect(sql);
             html = html + '<table border="1">';
             for (var i = 0; i < member.length; i++) {
                 var memberobject = member[i];
@@ -183,7 +170,6 @@
     <h1>room</h1>
     <div>
         <p id='name'></p>
-        <!--<button onclick="registerbutton()">メンバー登録</button><br>-->
         <button onclick="createtable()">テーブルを作る</button><br>
         <button onclick="startbutton()">スタート</button><br>
         解答:<input id="answer" value="" type="textfield">
