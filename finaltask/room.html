@@ -9,6 +9,7 @@
     <script>
         $(document).ready(function () {
             execSelect();
+            
         });
         var yokohamaline = [];
         var games = [];
@@ -82,14 +83,6 @@
                 await osql.connect(sql2);
                 execSelect();
                 console.log(yokohamaline)
-<<<<<<< HEAD:finaltask/room1.html
-                for (var i = 0; i < count; i++) {
-                games = game[i].answer;
-            }
-                
-=======
-
->>>>>>> 8e42c5ce1cc9401162dc34af1ef316bed4f4a6b2:finaltask/room.html
             }
             else if(games.indexOf(answer) >= 0){
                 console.log("ないよ")
