@@ -12,7 +12,7 @@
         });
         var yokohamaline = [];
 
-        async function　createtable(){
+        async function createtable() {
             var sql = 'create table Game(username text not null,answer text not null)'
             await osql.connect(sql);
         }
@@ -30,22 +30,22 @@
                 yokohamaline[i] = objects[i].station;
                 //console.log(yokohamaline)
             }
-        
-        
-        
+
+
+
 
         }
-        async function startbutton() {   
-            var timer ;
-            timer = setInterval(renewtable, 2000)  
+        async function startbutton() {
+            var timer;
+            timer = setInterval(renewtable, 2000)
         }
 
-        async function renewtable(){
+        async function renewtable() {
             execSelect();
             var game = await osql.connect('select*from Game');
             var html = "";
             html = html + '<table border="1">';
-            for(var i = 0;i<game.length;i++){
+            for (var i = 0; i < game.length; i++) {
                 var gameobject = game[i];
                 html = html + '<tr>';
                 html = html + '<td>' + gameobject.username + '</td>';
@@ -54,7 +54,7 @@
             }
             html = html + '</table>';
             document.getElementById('result').innerHTML = html;
-            if(game.length==20){
+            if (game.length == 20) {
                 var sql2 = `insert into Game(username,answer)value("全員","clear")`;
                 await osql.connect(sql2);
 
@@ -73,7 +73,7 @@
                 await osql.connect(sql2);
                 execSelect();
                 console.log(yokohamaline)
-                
+
             }
             else {
                 console.log("ないよ")
@@ -84,9 +84,9 @@
                 await osql.connect(sql2);
 
             }
-           
+
             document.getElementById('answer').value = "";
-            
+
         }
 
 
@@ -123,15 +123,15 @@
 </head>
 
 <body>
-    <h1>room1</h1>
+    <h1>room</h1>
     <div>
         <button onclick="resetbutton()">リセット</button><br>
         <button onclick="createtable()">テーブルを作る</button><br>
         <button onclick="startbutton()">スタート</button><br>
         解答:<input id="answer" value="" type="textfield">
         <button onclick="decisionbutton()">決定</button>
-        
-        <p id = 'result'></p>
+
+        <p id='result'></p>
 
     </div>
 

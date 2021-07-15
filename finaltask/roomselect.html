@@ -41,10 +41,20 @@
             html = html + '</table>';
             document.getElementById('result2').innerHTML = html;*/
         }
-        async function buttonPressed() {
+        async function button1Pressed() {
             var name = sessionStorage.getItem('username');
             sessionStorage.setItem('username', name);//足した
-            location.href = 'room1.html';//足した
+            location.href = 'room.html?room=1';//足した
+        }
+        async function button2Pressed() {
+            var name = sessionStorage.getItem('username');
+            sessionStorage.setItem('username', name);//足した
+            location.href = 'room.html?room=2';//足した
+        }
+        async function button3Pressed() {
+            var name = sessionStorage.getItem('username');
+            sessionStorage.setItem('username', name);//足した
+            location.href = 'room.html?room=3';//足した
         }
 
 
@@ -55,9 +65,16 @@
 </head>
 
 <body>
-    <h1>Room</h1>
+    <h1>RoomSelect</h1>
     <p id="result"></p>
-    <button onclick=" buttonPressed()">入る</button>
+    <button onclick=" button1Pressed()">room1</button>
+    <br>
+    <br>
+    <button onclick=" button2Pressed()">room2</button>
+    <br>
+    <br>
+    <button onclick=" button3Pressed()">room3</button>
+
 </body>
 
 </html>
