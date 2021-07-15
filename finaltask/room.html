@@ -10,10 +10,13 @@
         $(document).ready(function () {
             execSelect();
             
+            var room = osql.getParam('room');
+            console.log(room)
+
         });
         var yokohamaline = [];
         var games = [];
-        
+
 
         async function createtable() {
             var sql = 'create table Game(username text not null,answer text not null)'
@@ -84,7 +87,7 @@
                 execSelect();
                 console.log(yokohamaline)
             }
-            else if(games.indexOf(answer) >= 0){
+            else if (games.indexOf(answer) >= 0) {
                 console.log("ないよ")
                 execSelect();
                 var name = sessionStorage.getItem('username');
