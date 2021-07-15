@@ -79,7 +79,11 @@
             document.getElementById('name').innerHTML = html;
         }
 
+<<<<<<< HEAD
         
+=======
+
+>>>>>>> 8e04370c31a5a4d6ce00588b18937085be5a7315
 
         async function renewtable() {
             execSelect();
@@ -173,6 +177,7 @@
                 await osql.connect(`insert into YokohamaLine(stationid,station)value(20,'八王子')`);
         }
 
+
     </script>
 
 </head>
@@ -182,11 +187,11 @@
     <div>
         <p id='name'></p>
         <!--<button onclick="registerbutton()">メンバー登録</button><br>-->
-        <button onclick="resetbutton()">リセット</button><br>
         <button onclick="createtable()">テーブルを作る</button><br>
         <button onclick="startbutton()">スタート</button><br>
         解答:<input id="answer" value="" type="textfield">
-        <button onclick="decisionbutton()">決定</button>
+        <button onclick="decisionbutton()">決定</button><br><br>
+        <button onclick="resetbutton()">リセット(押さないでね）</button>
 
         <p id='result'></p>
 
