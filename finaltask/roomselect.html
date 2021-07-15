@@ -20,6 +20,8 @@
             var object = await osql.connect(sql);
             var name = sessionStorage.getItem('username');
             console.log(name);
+            var name = sessionStorage.getItem('username');
+            sessionStorage.setItem('username', name);
 
             document.getElementById('result').innerHTML = name + 'さん こんにちは！';
 
@@ -41,21 +43,6 @@
             html = html + '</table>';
             document.getElementById('result2').innerHTML = html;*/
         }
-        async function button1Pressed() {
-            var name = sessionStorage.getItem('username');
-            sessionStorage.setItem('username', name);//足した
-            location.href = 'room.html?room=1';//足した
-        }
-        async function button2Pressed() {
-            var name = sessionStorage.getItem('username');
-            sessionStorage.setItem('username', name);//足した
-            location.href = 'room.html?room=2';//足した
-        }
-        async function button3Pressed() {
-            var name = sessionStorage.getItem('username');
-            sessionStorage.setItem('username', name);//足した
-            location.href = 'room.html?room=3';//足した
-        }
 
 
     // sessionStorage.setItem('username', name);//足した
@@ -67,14 +54,16 @@
 <body>
     <h1>RoomSelect</h1>
     <p id="result"></p>
-    <button onclick=" button1Pressed()">room1</button>
-    <br>
-    <br>
-    <button onclick=" button2Pressed()">room2</button>
-    <br>
-    <br>
-    <button onclick=" button3Pressed()">room3</button>
-
+    <li><a href="room1.html">room1</a></li>
+    <li><a href="room2.html">room2</a></li>
+    <li><a href="room3.html">room3</a></li>
+    <li><a href="room4.html">room4</a></li>
+    <li><a href="room5.html">room5</a></li>
+    <li><a href="room6.html">room6</a></li>
+    <li><a href="room7.html">room7</a></li>
+    <li><a href="room8.html">room8</a></li>
+    <li><a href="room9.html">room9</a></li>
+    <li><a href="room10.html">room10</a></li>
 </body>
 
 </html>
