@@ -9,7 +9,7 @@
     <script>
         $(document).ready(function () {
             execSelect();
-            
+
             var room = osql.getParam('room');
             console.log(room)
 
@@ -43,7 +43,6 @@
 
 
         }
-<<<<<<< HEAD:finaltask/room1.html
 
         //async function registerbutton() {
         //timer2 = setInterval(nametable, 2000)
@@ -79,13 +78,11 @@
             document.getElementById('name').innerHTML = html;
         }
 
-=======
         async function startbutton() {
             var timer;
             timer = setInterval(renewtable, 2000)
         }
 
->>>>>>> 8cb8d77c715dc27293035b2aaa10c945f91a6608:finaltask/room.html
         async function renewtable() {
             execSelect();
             var game = await osql.connect('select*from Game');
@@ -126,9 +123,7 @@
                 await osql.connect(sql2);
                 execSelect();
                 console.log(yokohamaline)
-<<<<<<< HEAD:finaltask/room1.html
 
-=======
             }
             else if (games.indexOf(answer) >= 0) {
                 console.log("ないよ")
@@ -136,7 +131,6 @@
                 var name = sessionStorage.getItem('username');
                 var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver(;▽;)もう出てるよ")`
                 await osql.connect(sql2);
->>>>>>> 8cb8d77c715dc27293035b2aaa10c945f91a6608:finaltask/room.html
             }
             else {
                 console.log("ないよ")
