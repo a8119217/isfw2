@@ -9,8 +9,14 @@
     <script>
         $(document).ready(function () {
             execSelect();
+            
+            var room = osql.getParam('room');
+            console.log(room)
+
         });
         var yokohamaline = [];
+        var games = [];
+
 
         async function createtable() {
             var sql = 'create table Game(username text not null,answer text not null)'
@@ -37,6 +43,7 @@
 
 
         }
+<<<<<<< HEAD:finaltask/room1.html
 
         //async function registerbutton() {
         //timer2 = setInterval(nametable, 2000)
@@ -72,6 +79,13 @@
             document.getElementById('name').innerHTML = html;
         }
 
+=======
+        async function startbutton() {
+            var timer;
+            timer = setInterval(renewtable, 2000)
+        }
+
+>>>>>>> 8cb8d77c715dc27293035b2aaa10c945f91a6608:finaltask/room.html
         async function renewtable() {
             execSelect();
             var game = await osql.connect('select*from Game');
@@ -95,6 +109,13 @@
 
         async function decisionbutton() {
             var answer = document.getElementById('answer').value;
+            var objects2 = await osql.connect(`select count(answer) as x from Game;`);
+            var count = Number(objects2[0].x)
+            var game = await osql.connect('select*from Game');
+            for (var i = 0; i < count; i++) {
+                games[i] = game[i].answer;
+                console.log(game)
+            }
             if (yokohamaline.indexOf(answer) >= 0) {
                 console.log("あるよ")
                 var sql = `DELETE FROM YokohamaLine WHERE station="${answer}";`
@@ -105,14 +126,23 @@
                 await osql.connect(sql2);
                 execSelect();
                 console.log(yokohamaline)
+<<<<<<< HEAD:finaltask/room1.html
 
+=======
+            }
+            else if (games.indexOf(answer) >= 0) {
+                console.log("ないよ")
+                execSelect();
+                var name = sessionStorage.getItem('username');
+                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver(;▽;)もう出てるよ")`
+                await osql.connect(sql2);
+>>>>>>> 8cb8d77c715dc27293035b2aaa10c945f91a6608:finaltask/room.html
             }
             else {
                 console.log("ないよ")
                 execSelect();
-
                 var name = sessionStorage.getItem('username');
-                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver(;▽;)")`
+                var sql2 = `insert into Game(username,answer)value("${name}","${answer}GameOver(;▽;)横浜線にないよ")`
                 await osql.connect(sql2);
 
             }
@@ -156,7 +186,7 @@
 </head>
 
 <body>
-    <h1>room1</h1>
+    <h1>room</h1>
     <div>
         <p id='name'></p>
         <!--<button onclick="registerbutton()">メンバー登録</button><br>-->
